@@ -1,1 +1,1 @@
-# react-redux
+"My read list" application.
