@@ -1,0 +1,43 @@
+{
+  "name": "my-read-list",
+  "version": "1.0.0",
+  "description": "Simple application, that help you to create your personal reading list",
+  "main": "index.html",
+  "scripts": {
+    "dev": "webpack-dev-server --content-base build/ --port 9000 --hot --inline"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vdanyliv/my-read-list.git"
+  },
+  "keywords": [
+    "es6",
+    "babel",
+    "react",
+    "redux",
+    "webpack"
+  ],
+  "author": "Volodymyr Danyliv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vdanyliv/my-read-list/issues"
+  },
+  "homepage": "https://github.com/vdanyliv/my-read-list#readme",
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "bootstrap": "^3.3.7",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.6.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  }
+}
