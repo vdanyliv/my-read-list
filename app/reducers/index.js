@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import SearchReducer from './search.reducer';
+import { createStore } from 'redux';
+import BooksReducer from './books.reducer';
 import NavigationReducer from './navigation.reducer';
+import BookSelect from './book.select.reducer';
 
 const allReducers = combineReducers({
-	search: SearchReducer,
-	navigation: NavigationReducer
+	books: BooksReducer,
+	navigation: NavigationReducer,
+	bookSelect: BookSelect
 });
 
 export default allReducers;
