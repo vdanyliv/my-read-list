@@ -10,9 +10,10 @@ export const selectBook =  (bookItem) => {
 	}
 } 
 
-export const bookSearch = (name) => {
+export const bookSearch = (search) => {
 	return {
 		type: BOOK_SEARCH,
-		name
+		name: search.value,
+		books: search.books
 	}
 }
