@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectBook } from 'actions/book.select';
+import { selectBook, bookSearch } from 'actions/book.select';
 
 class Books extends Component {
 	createListItem() {
@@ -29,7 +29,7 @@ class Books extends Component {
 
 function mapStateToProps(state) {
 	return {
-		books: state.books
+		books: state.bookSearch
 	}
 }
 
