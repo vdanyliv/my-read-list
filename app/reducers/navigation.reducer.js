@@ -7,8 +7,8 @@ export default function() {
 		},
 		{
 			id: 2,
-			link: '#/about',
-			name: 'About'
+			link: '#/mybooks',
+			name: 'My books'
 		},
 		{
 			id: 3,
