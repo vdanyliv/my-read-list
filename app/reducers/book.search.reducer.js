@@ -1,17 +1,25 @@
-export default function(state = [], action) {
+const initialState = {
+	items: [],
+	searchInProgress: false
+};
+
+export default function(state = initialState, action) {
 	switch (action.type) {
-		case 'BOOK_SEARCH':
-			if (action.name) {
-				state = action.books.filter((item) => {
-					if (item.book.match(action.name)) {
-						return item;
-					}
-				});
-			}
-			
-			return state;
+		case 'FETCH_BOOKS_SUCCESS':
+			return Object.assign({}, state, {
+				items: action.items,
+				searchInProgress: false
+			});
+		return state;
+		case 'FETCH_BOOKS_REQUEST':
+			return Object.assign({}, state, {
+				searchInProgress: true
+			});
+		case 'FETCH_BOOKS_FAILURE':
+			return Object.assign({}, state, {
+				searchInProgress: false
+			});
 		default:
-			console.error('default state');
 			return state;
 	}
 }
