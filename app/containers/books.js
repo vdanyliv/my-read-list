@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectBook, bookSearch } from 'actions/book.select';
+import { selectBook } from 'actions/book.select';
+import { bookSearch } from 'actions/books.search';
 
 class Books extends Component {
 	createListItem() {
-		return this.props.books.map((item) => {
+		if (this.props.items.length) {
+		return this.props.items.map((item) => {
 			return (
 				<div 
 					key={ item.id }
 					onClick={ () => selectBook(this.props.selectBook(item)) }
 				>
-					<div>{ item.book }</div>
-					<li>Name: { item.author }</li>
+					<div>Title: { item.volumeInfo.title }</div>
+					<div>Description: { item.volumeInfo.description }</div>
 				</div>
 			)
 		});
+		}
 	}
 
 	render() {
 		return (
 			<div className="content-container">
+				<div>Is loader active: { console.error(this.props.searchState) }</div>
 				{ this.createListItem() }
 			</div>
 		)
@@ -29,7 +33,8 @@ class Books extends Component {
 
 function mapStateToProps(state) {
 	return {
-		books: state.bookSearch
+		items: state.bookSearch.items,
+		searchState: state.bookSearch.searchInProgress
 	}
 }
 
