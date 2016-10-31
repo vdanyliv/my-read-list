@@ -8,12 +8,4 @@ export const selectBook =  (bookItem) => {
 		type: BOOK_SELECT,
 		payload: bookItem
 	}
-} 
-
-export const bookSearch = (search) => {
-	return {
-		type: BOOK_SEARCH,
-		name: search.value,
-		books: search.books
-	}
 }
