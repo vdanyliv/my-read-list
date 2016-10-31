@@ -19,9 +19,6 @@ class App extends Component {
 					<div className="row col-md-12">
 						<Books />
 					</div>
-					<div className="row col-md-12 footer-container">
-						Footer
-					</div>
 				</div>
 		);
 	}
