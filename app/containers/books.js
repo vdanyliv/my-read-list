@@ -9,12 +9,19 @@ class Books extends Component {
 		if (this.props.items.length) {
 		return this.props.items.map((item) => {
 			return (
-				<div 
+				<div className="col-md-12 book-item"
 					key={ item.id }
 					onClick={ () => selectBook(this.props.selectBook(item)) }
 				>
-					<div>Title: { item.volumeInfo.title }</div>
-					<div>Description: { item.volumeInfo.description }</div>
+					<div className="row">
+						<div className="col-md-2">
+							<img src={ item.volumeInfo.imageLinks.thumbnail } className="img-thumbnail"/>
+						</div>
+						<div className="col-md-8">
+							<div><h2>{ item.volumeInfo.title }</h2></div>
+							<div><h5>{ item.volumeInfo.description }</h5></div>
+						</div>
+					</div>
 				</div>
 			)
 		});
@@ -24,7 +31,7 @@ class Books extends Component {
 	render() {
 		return (
 			<div className="content-container">
-				<div>Is loader active: { console.error(this.props.searchState) }</div>
+				{ console.error(this.props.searchState) }
 				{ this.createListItem() }
 			</div>
 		)
