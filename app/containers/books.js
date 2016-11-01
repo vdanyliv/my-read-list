@@ -9,19 +9,19 @@ class Books extends Component {
 		if (this.props.items.length) {
 		return this.props.items.map((item) => {
 			return (
-				<div className="col-md-12 book-item"
-					key={ item.id }
-					onClick={ () => selectBook(this.props.selectBook(item)) }
-				>
-					<div className="row">
-						<div className="col-md-2">
-							<img src={ item.volumeInfo.imageLinks.thumbnail } className="img-thumbnail"/>
+				<div className="col-md-12 book-item" key={ item.id } onClick={ () => selectBook(this.props.selectBook(item)) } >
+						<div className="col-md-2 col-xs-2">
+							<img className="img-responsive book-img" src={ 
+								item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail  ? item.volumeInfo.imageLinks.thumbnail : 'img/default-img.png'
+							} />
 						</div>
-						<div className="col-md-8">
-							<div><h2>{ item.volumeInfo.title }</h2></div>
-							<div><h5>{ item.volumeInfo.description }</h5></div>
+						<div className="col-md-8 col-xs-8">
+	        		<h3>{ item.volumeInfo.title }</h3>
+							<p>{ item.volumeInfo.description ? item.volumeInfo.description.substr(0, 256) + '...' : 'Description empty' }</p>
 						</div>
-					</div>
+						<div className="col-md-2 col-xs-2">
+							<a href="#">To Read</a>
+						</div>
 				</div>
 			)
 		});
@@ -30,9 +30,12 @@ class Books extends Component {
 
 	render() {
 		return (
-			<div className="content-container">
-				{ console.error(this.props.searchState) }
-				{ this.createListItem() }
+			<div className={
+				this.props.searchState ? "content-container loader" :	"content-container"
+			}>
+				<div className="row">
+					{ this.createListItem() }
+				</div>
 			</div>
 		)
 	}
