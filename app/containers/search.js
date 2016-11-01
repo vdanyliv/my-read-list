@@ -4,9 +4,16 @@ import { connect } from 'react-redux';
 import { requestSearch } from 'actions/books.search';
 
 class Search extends Component {
+	constructor() {
+		super();
+		this.searchDebounce;
+	}
 	searchInDirectory(keyword) {
 		if (keyword.length > 2) {
-			requestSearch(this.props.requestSearch(keyword));
+				clearTimeout(this.searchDebounce);
+				this.searchDebounce = setTimeout(() => {
+					requestSearch(this.props.requestSearch(keyword));
+				}, 800);
 		}
 	}
 
