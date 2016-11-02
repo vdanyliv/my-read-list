@@ -2,17 +2,17 @@ export default function() {
 	return [
 		{
 			id: 1,
-			link: '#/home',
+			link: '/',
 			name: 'Home'
 		},
 		{
 			id: 2,
-			link: '#/mybooks',
+			link: 'mybooks',
 			name: 'My books'
 		},
 		{
 			id: 3,
-			link: '#/version',
+			link: 'version',
 			name: 'Version'
 		}
 	]
