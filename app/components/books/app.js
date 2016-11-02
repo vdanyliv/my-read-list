@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Navigation from 'containers/navigation';
-import Search from 'containers/search';
-import Books from 'containers/books';
+import Navigation from 'containers/common/navigation';
+import Search from 'containers/books/search';
+import BookList from 'containers/books/book-list';
 
 require('common/style/css/bootstrap.css');
 require('common/style/css/custom.css');
@@ -17,7 +17,7 @@ class App extends Component {
 						<Search />
 					</div>
 					<div className="row col-md-12">
-						<Books />
+						<BookList />
 					</div>
 				</div>
 		);
