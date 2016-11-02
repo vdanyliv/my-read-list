@@ -3,11 +3,10 @@ let path = require('path');
 
 module.exports = {
     entry: [
-        'webpack/hot/only-dev-server',
         './app/main.js'
     ],
     output: {
-        path: './build',
+        path: __dirname + '/build',
         filename: 'bundle.js',
     },
     module: {
@@ -48,14 +47,5 @@ module.exports = {
         root: [
             path.resolve('./app')
         ]
-    },
-    devServer: {
-        contentBase: './build/',
-        historyApiFallback: true,
-        hot: true,
-        quiet: false,
-        stats: {
-          colors: true
-        }
     }
 };
