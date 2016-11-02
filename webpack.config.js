@@ -2,7 +2,10 @@ let CopyWebpackPlugin = require('copy-webpack-plugin');
 let path = require('path');
 
 module.exports = {
-    entry: './app/main.js',
+    entry: [
+        'webpack/hot/only-dev-server',
+        './app/main.js'
+    ],
     output: {
         path: './build',
         filename: 'bundle.js',
@@ -34,10 +37,10 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { 
-                from: "./app/index.html", to: "index.html",                
+                from: './app/index.html', to: 'index.html',                
             },
             { 
-                from: "./app/common/img", to: "img/",                
+                from: './app/common/img', to: 'img/',                
             }
         ])
     ],
@@ -45,5 +48,14 @@ module.exports = {
         root: [
             path.resolve('./app')
         ]
+    },
+    devServer: {
+        contentBase: './build/',
+        historyApiFallback: true,
+        hot: true,
+        quiet: false,
+        stats: {
+          colors: true
+        }
     }
 };
