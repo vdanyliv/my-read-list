@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -7,7 +8,7 @@ class Navigation extends Component {
 
 		return this.props.nav.map((item) => {
 			return (
-				<li key={ item.id }><a href={ item.link }>{item.name}</a></li>
+				<li key={ item.id }><Link to={ item.link }>{item.name}</Link></li>
 			)
 		});
 	}
