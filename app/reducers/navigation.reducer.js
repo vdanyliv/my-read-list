@@ -12,6 +12,11 @@ export default function() {
 		},
 		{
 			id: 3,
+			link: 'signin',
+			name: 'Signin'
+		},
+		{
+			id: 4,
 			link: 'version',
 			name: 'Version'
 		}
