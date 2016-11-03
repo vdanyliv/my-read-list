@@ -3,7 +3,7 @@ let path = require('path');
 
 module.exports = {
     entry: [
-        'webpack/hot/only-dev-server',
+        'webpack-dev-server/client?http://localhost:9000/',
         'webpack/hot/dev-server',
         './app/main.js'
     ],
