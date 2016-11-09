@@ -1,11 +1,9 @@
-/*ACTION TYPE*/
 export const BOOK_SELECT = 'BOOK_SELECT';
 export const BOOK_SEARCH = 'BOOK_SEARCH';
 
-/*ACTION CREATORS*/
-export const selectBook =  (bookItem) => {
+export const selectBook = (bookItem) => {
 	return {
 		type: BOOK_SELECT,
 		payload: bookItem
-	}
-}
+	};
+};
