@@ -6,7 +6,6 @@ const webpackConfigDev = require('./webpack.config.dev');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 const configDB = require('./server/mongo/config.js');
 
@@ -41,12 +40,11 @@ if (env === 'dev') {
   });
 }
 
-/**/
-
 if (env === 'dev') {
   app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:9000');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
@@ -57,10 +55,7 @@ if (env === 'dev') {
 
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session());
-
-require('./server/index')(app, passport);
+require('./server/index')(app);
 
 if (env === 'prod') {
   app.set('port', process.env.PORT || 9000);
