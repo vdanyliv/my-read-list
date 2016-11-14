@@ -1,6 +1,6 @@
 const initialState = {
-	items: [],
-	searchInProgress: false
+  items: [],
+  searchInProgress: false
 };
 
 export default function(state = initialState, action) {
