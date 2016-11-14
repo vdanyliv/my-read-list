@@ -5,14 +5,16 @@ const webpackConfigProd = require('./webpack.config.prod');
 const webpackConfigDev = require('./webpack.config.dev');
 
 const express = require('express');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const configDB = require('./server/mongo/config.js');
+const configDB = require('./server/config/mongo.js');
 
 const app = express();
 const env = process.env.USER_ENV;
 
 mongoose.connect(configDB.url);
+app.set('secret', configDB.secret);
 
 if (env === 'dev') {
   webpackConfigDev.plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -56,6 +58,7 @@ if (env === 'dev') {
 app.use(bodyParser.urlencoded({ extended:true }));
 app.use(bodyParser.json());
 require('./server/index')(app);
+app.use(morgan('dev'));
 
 if (env === 'prod') {
   app.set('port', process.env.PORT || 9000);
