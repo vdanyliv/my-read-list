@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import LoginForm from './forms/login.form';
-import RegForm from './forms/reg.form'
+import SignInForm from './forms/signin.form';
+import SignUpForm from './forms/signup.form';
 
 class SignIn extends Component {
   constructor() {
     super();
+
     this.state = {
       activeState: null
-    }
+    };
   }
-  
+
   render() {
     return (
       <div className="row col-md-12">
@@ -23,11 +24,11 @@ class SignIn extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          { this.state.activeState === 'reg' && <RegForm /> }
-          { this.state.activeState === 'login' && <LoginForm /> }
+          { this.state.activeState === 'reg' && <SignUpForm /> }
+          { this.state.activeState === 'login' && <SignInForm /> }
         </div>
       </div>
-    )
+    );
   }
 }
 
