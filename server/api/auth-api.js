@@ -25,6 +25,8 @@ module.exports = app => {
           });
 
           res.json({
+            user: user.local.name,
+            authorized: true,
             secretToken: token
           });
         });
@@ -55,6 +57,26 @@ module.exports = app => {
         }
       }
     });
+  });
+
+  app.post('/isAuthorized', (req, res) => {
+    const token = req.body.token;
+    console.error(req.cookies);
+    if (token) {
+      jwt.verify(token, app.get('secret'), (err, decoded) => {
+        if (err) {
+          res.json({
+            error: 'Failed to authenticate token'
+          });
+        } else {
+          res.json(decoded);
+        }
+      });
+    } else {
+      res.status(403).send({
+        error: 'No token provided.'
+      });
+    }
   });
 };
 
