@@ -18,14 +18,18 @@ module.exports = app => {
         newUser.local.name = userName;
         newUser.local.password = userPassword;
 
-        newUser.save(saveError => {
+        newUser.save((saveError, userAccount) => {
           if (saveError) throw saveError;
-          const token = jwt.sign(newUser, app.get('secret'), {
+          const token = jwt.sign({
+            id: userAccount._id,
+            name: userAccount.local.name
+          }, app.get('secret'), {
             expiresIn: 1440
           });
 
           res.json({
-            user: user.local.name,
+            id: userAccount._id,
+            user: userAccount.local.name,
             authorized: true,
             secretToken: token
           });
@@ -45,11 +49,15 @@ module.exports = app => {
         if (user.local.password !== userPassword) {
           res.json({ 'error': 'Password wrong' });
         } else {
-          const token = jwt.sign(user.local, app.get('secret'), {
+          const token = jwt.sign({
+            id: user._id,
+            name: user.local.name
+          }, app.get('secret'), {
             expiresIn: 1440
           });
 
           res.json({
+            id: user._id,
             user: user.local.name,
             authorized: true,
             secretToken: token
@@ -61,7 +69,7 @@ module.exports = app => {
 
   app.post('/isAuthorized', (req, res) => {
     const token = req.body.token;
-    console.error(req.cookies);
+
     if (token) {
       jwt.verify(token, app.get('secret'), (err, decoded) => {
         if (err) {
@@ -69,7 +77,10 @@ module.exports = app => {
             error: 'Failed to authenticate token'
           });
         } else {
-          res.json(decoded);
+          res.json({
+            authorized: true,
+            user: decoded
+          });
         }
       });
     } else {
