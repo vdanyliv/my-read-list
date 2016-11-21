@@ -6,11 +6,11 @@ import BookSearch from './book.search.reducer';
 import User from './user.reducer';
 
 const allReducers = combineReducers({
-	user: User,
-	books: BooksReducer,
-	navigation: NavigationReducer,
-	bookSelect: BookSelect,
-	bookSearch: BookSearch
+  user: User,
+  books: BooksReducer,
+  navigation: NavigationReducer,
+  bookSelect: BookSelect,
+  bookSearch: BookSearch
 });
 
 export default allReducers;
