@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from 'containers/common/navigation';
+import MyBooks from 'containers/mybooks/my-book-list';
 
 require('common/style/css/bootstrap.css');
 require('common/style/css/custom.css');
@@ -12,7 +13,7 @@ class App extends Component {
           <Navigation />
         </div>
         <div className="row col-md-12">
-          Some info
+          <MyBooks />
         </div>
       </div>
     );
