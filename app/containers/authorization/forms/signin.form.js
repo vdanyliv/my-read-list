@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signinUser } from 'actions/user';
@@ -12,6 +13,12 @@ class LoginForm extends Component {
       password: '',
       token: ''
     };
+  }
+
+  componentWillReceiveProps(state) {
+    if (!('error' in state.user)) {
+      browserHistory.push('/');
+    }
   }
 
   authorizeUser(e) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { signupUser } from 'actions/user';
@@ -11,16 +12,26 @@ class RegForm extends Component {
       password: ''
     };
   }
+
+  componentWillReceiveProps(state) {
+    if (!('error' in state.user)) {
+      browserHistory.push('/');
+    }
+  }
+
   createNewUser(event) {
     signupUser(this.props.newUser(this.state));
     event.preventDefault();
   }
+
   nameChange(event) {
     this.setState({ name: event.target.value });
   }
+
   passwordChange(event) {
     this.setState({ password: event.target.value });
   }
+
   render() {
     return (
       <form onSubmit={e => this.createNewUser(e)}>
