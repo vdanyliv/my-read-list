@@ -21,8 +21,11 @@ module.exports = callback => {
       token: secret
     })
     .then(response => {
-      callback({type: 'SIGNUP_SUCCESS', auth: response.data });
-      browserHistory.push('/');
+      if ('error' in response.data) {
+        browserHistory.push('/signin');
+      } else {
+        callback({type: 'SIGNUP_SUCCESS', auth: response.data });
+      }
     })
     .catch(() => {
       browserHistory.push('/signin');
