@@ -79,7 +79,8 @@ module.exports = app => {
         } else {
           res.json({
             authorized: true,
-            user: decoded
+            user: decoded,
+            secretToken: token
           });
         }
       });
