@@ -35,6 +35,9 @@ class RegForm extends Component {
   render() {
     return (
       <form onSubmit={e => this.createNewUser(e)}>
+        <div className="row">
+          { this.props.user.error && <div className="alert alert-danger">{this.props.user.error}</div> }
+        </div>
         <div>
           <h3>Registration</h3>
           <div className="form-group">

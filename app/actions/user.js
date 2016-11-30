@@ -12,9 +12,10 @@ export const registrationSuccess = authResult => {
   };
 };
 
-export const registrationFailure = () => {
+export const registrationFailure = authResult => {
   return {
-    type: SIGNUP_FAILURE
+    type: SIGNUP_FAILURE,
+    auth: authResult
   };
 };
 
@@ -36,8 +37,12 @@ export const signupUser = formData => {
   return dispatch => {
     axios.post('http://localhost:9001/signup', formData)
     .then(result => {
-      document.cookie = 'token=' + result.data.secretToken;
-      dispatch(registrationSuccess(result));
+      if (result.data.error) {
+        dispatch(registrationFailure(result.data));
+      } else {
+        document.cookie = 'token=' + result.data.secretToken;
+        dispatch(registrationSuccess(result.data));
+      }
     })
     .catch(() => {
       dispatch(registrationFailure);
