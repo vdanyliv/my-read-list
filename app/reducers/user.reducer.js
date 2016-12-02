@@ -24,7 +24,8 @@ export default function(state = initialState, action) {
   case 'SIGNIN_FAILURE':
     return Object.assign({}, {
       error: action.auth.error,
-      authorized: false
+      authorized: false,
+      group: 'guest'
     });
   default:
     return state;

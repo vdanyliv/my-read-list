@@ -14,10 +14,35 @@ const store = applyMiddleware(thunk)(createStore)(allReducers, window.__REDUX_DE
 const rootElement = document.getElementById('root');
 
 class App extends Component {
-  componentWillMount() {
-    loginRequired(store.dispatch);
+  constructor() {
+    super();
+
+    this.state = {
+      checkAuthorization: false
+    };
   }
+
+  componentDidMount() {
+    const navigationStore = store.getState().navigation;
+
+    loginRequired(store.dispatch, navigationStore, this);
+  }
+
   render() {
+    return (
+      <div>
+        { this.state.checkAuthorization ? this.renderApplication() : this.renderLoader() }
+      </div>
+    );
+  }
+
+  renderLoader() {
+    return (
+      <div>Cheking authorization</div>
+    );
+  }
+
+  renderApplication() {
     return (
       <Router history={ browserHistory }>
         <Route path="/" component={Main}></Route>
