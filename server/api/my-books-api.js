@@ -1,4 +1,5 @@
 const MyBooks = require('../models/books');
+const _ = require('lodash');
 
 module.exports = app => {
   app.post('/addToFavorite', (req, res) => {
@@ -10,10 +11,10 @@ module.exports = app => {
       volumeInfo: requestData.volumeInfo
     };
 
-    addToFavorite.userId = requestData.userId;
+    addToFavorite._creator = requestData.userId;
     addToFavorite.books.push(bookObject);
 
-    MyBooks.findOneAndUpdate({ 'userId': requestData.userId }, {$push: { books: bookObject } }, (err, obj) => {
+    MyBooks.findOneAndUpdate({ '_creator': requestData.userId }, {$push: { books: bookObject } }, (err, obj) => {
       if (err || !obj) {
         addToFavorite.save(saveError => {
           if (saveError) result({response: 'failed'});
@@ -32,9 +33,11 @@ module.exports = app => {
   app.post('/retrieveFavorite', (req, res) => {
     const requestData = req.body;
 
-    MyBooks.findOne({ 'userId': requestData.userId }, (err, obj) => {
-      if ('books' in obj) {
-        result(obj.books);
+    MyBooks.findOne({_creator: requestData._id})
+    .populate('_creator', 'local.name')
+    .exec((err, obj) => {
+      if (!err && obj) {
+        result(obj);
       } else {
         result({ 'response': 'failed' });
       }

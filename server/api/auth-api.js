@@ -20,6 +20,7 @@ module.exports = app => {
 
         newUser.save((saveError, userAccount) => {
           if (saveError) throw saveError;
+
           const token = jwt.sign({
             id: userAccount._id,
             name: userAccount.local.name

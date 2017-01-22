@@ -3,6 +3,7 @@ import BooksReducer from './books.reducer';
 import NavigationReducer from './navigation.reducer';
 import BookSelect from './book.select.reducer';
 import BookSearch from './book.search.reducer';
+import BookToFavorite from './book.favorite.reducer';
 import User from './user.reducer';
 
 const allReducers = combineReducers({
@@ -10,7 +11,8 @@ const allReducers = combineReducers({
   books: BooksReducer,
   navigation: NavigationReducer,
   bookSelect: BookSelect,
-  bookSearch: BookSearch
+  bookSearch: BookSearch,
+  bookToFavorite: BookToFavorite
 });
 
 export default allReducers;
