@@ -2,5 +2,6 @@
 *.sublime-workspace
 build
 node_modules
+server/config/*.js
 .eslintrc.json
 *.log
