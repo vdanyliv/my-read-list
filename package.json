@@ -4,7 +4,7 @@
   "description": "Simple application, that help you to create your personal reading list",
   "main": "index.html",
   "scripts": {
-    "dev": "USER_ENV=dev node index.js",
+    "dev": "USER_ENV=dev nodemon index.js",
     "prod": "USER_ENV=prod node index.js"
   },
   "repository": {
@@ -42,6 +42,7 @@
     "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.6.5",
     "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
     "passport-local": "^1.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
