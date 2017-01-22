@@ -2,24 +2,28 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectBook } from 'actions/book.select';
+import { bookToFavorite } from 'actions/book.favorite';
 
 class BookList extends Component {
   createListItem() {
     if (this.props.items.length) {
       return this.props.items.map(item => {
         return (
-          <div className="col-md-12 book-item" key={ item.id } onClick={ () => selectBook(this.props.selectBook(item)) } >
+          <div className="col-md-12 book-item" key={ item.id } >
             <div className="col-md-2 col-xs-2">
             <img className="img-responsive book-img" src={
             item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail ? item.volumeInfo.imageLinks.thumbnail : 'img/default-img.png'
             } />
             </div>
             <div className="col-md-8 col-xs-8">
-              <h3>{ item.volumeInfo.title }</h3>
+              <h3 onClick={ () => selectBook(this.props.selectBook(item)) }>{ item.volumeInfo.title }</h3>
               <p>{ item.volumeInfo.description ? item.volumeInfo.description.substr(0, 256) + '...' : 'Description empty' }</p>
             </div>
             <div className="col-md-2 col-xs-2">
-              <a href="#">To Read</a>
+              <a className="sep-link" href="#">To Read</a>
+              <a className="sep-link" href="#" onClick={
+                () => bookToFavorite(this.props.bookToFavorite(this.props.user, item))
+              }>To Favorite</a>
             </div>
           </div>
         );
@@ -42,12 +46,16 @@ class BookList extends Component {
 function mapStateToProps(state) {
   return {
     items: state.bookSearch.items,
-    searchState: state.bookSearch.searchInProgress
+    searchState: state.bookSearch.searchInProgress,
+    user: state.user
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return { selectBook: bindActionCreators(selectBook, dispatch) };
+  return {
+    selectBook: bindActionCreators(selectBook, dispatch),
+    bookToFavorite: bindActionCreators(bookToFavorite, dispatch)
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);
