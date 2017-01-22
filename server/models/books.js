@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = mongoose.model('MyBooks', new Schema({
+const MyBooks = new Schema({
   books: [{
     id: String,
     etag: String,
@@ -10,4 +10,6 @@ module.exports = mongoose.model('MyBooks', new Schema({
   _creator: {
     type: Schema.ObjectId, ref: 'User'
   }
-}));
+});
+
+module.exports = mongoose.model('MyBooks', MyBooks);

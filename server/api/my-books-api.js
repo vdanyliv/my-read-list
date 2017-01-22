@@ -1,4 +1,5 @@
 const MyBooks = require('../models/books');
+const _ = require('lodash');
 
 module.exports = app => {
   app.post('/addToFavorite', (req, res) => {

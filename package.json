@@ -40,6 +40,7 @@
     "gulp-util": "^3.0.7",
     "image-webpack-loader": "^3.0.0",
     "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.17.4",
     "mongoose": "^4.6.5",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
