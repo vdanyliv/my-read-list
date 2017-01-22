@@ -8,10 +8,10 @@ class MyBookList extends Component {
     bookGetFavorite(this.props.bookGetFavorite(this.props.user));
   }
   getBookList() {
-    return this.props.bookList.map(item => {
+    return this.props.bookList.books.map(item => {
       return (
-        <div key={item.id}>
-          Data
+        <div key={item._id}>
+          <div>{item.volumeInfo.title}</div>
         </div>
       );
     });

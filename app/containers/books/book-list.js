@@ -22,13 +22,17 @@ class BookList extends Component {
             <div className="col-md-2 col-xs-2">
               <a className="sep-link" href="#">To Read</a>
               <a className="sep-link" href="#" onClick={
-                () => bookToFavorite(this.props.bookToFavorite(this.props.user, item))
+                e => this.addBookToFavorite(e, item)
               }>To Favorite</a>
             </div>
           </div>
         );
       });
     }
+  }
+  addBookToFavorite(e, item) {
+    e.preventDefault();
+    return bookToFavorite(this.props.bookToFavorite(this.props.user, item));
   }
   render() {
     return (
